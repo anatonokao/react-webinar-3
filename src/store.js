@@ -38,13 +38,17 @@ class Store {
     for (const listener of this.listeners) listener();
   }
 
+  generateCode = ((index = 0) => {
+    return () => ++index;
+  })();
+
   /**
    * Добавление новой записи
    */
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: (this.state.list.length + 1 + Math.floor(Math.random() * 100)), title: 'Новая запись', selectCounter: 0}]
+      list: [...this.state.list, {code: this.generateCode(), title: 'Новая запись', selectCounter: 0}]
     })
   };
 
