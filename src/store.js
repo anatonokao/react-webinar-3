@@ -44,7 +44,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: (Date.now()  + Math.floor(Math.random() * 100)).toString(36).toUpperCase(), title: 'Новая запись', selectCounter: 0}]
+      list: [...this.state.list, {code: (this.state.list.length + 1 + Math.floor(Math.random() * 100)), title: 'Новая запись', selectCounter: 0}]
     })
   };
 

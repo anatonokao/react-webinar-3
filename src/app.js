@@ -31,7 +31,23 @@ function App({store}) {
                   {item.selectCounter > 0 &&
                     <> 
                       <span className='Item-title-separator'> | </span>
-                      <span className='Item-title-counter'>Выделяли {item.selectCounter} раз</span>
+                      <span className='Item-title-counter'>
+                        Выделяли
+                        {' ' + item.selectCounter + ' '} 
+                        {
+                          (
+                            item.selectCounter !== 12 && 
+                            item.selectCounter !== 13 && 
+                            item.selectCounter !== 14
+                          )
+                           &&
+                          (
+                            item.selectCounter.toString().at(-1) === '2' || 
+                            item.selectCounter.toString().at(-1) === '3' || 
+                            item.selectCounter.toString().at(-1) === '4'
+                          )
+                            ? 'раза' : 'раз'}
+                        </span>
                     </>
                   }
                 </div>
