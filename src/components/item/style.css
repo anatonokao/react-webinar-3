@@ -1,7 +1,6 @@
 .Item {
   display: flex;
   justify-content: flex-start;
-  transition: background-color 1s;
 }
 
 .Item-code {
@@ -22,6 +21,7 @@
 .Item-countInCard {
   text-wrap: nowrap;
   padding: 20px 10px;
+  margin: 0 14px 0 52px;
 }
 
 .Item-actions {
