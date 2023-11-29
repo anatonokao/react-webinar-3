@@ -5,13 +5,15 @@ import { plural } from "../../utils";
 
 function Controls({openCart, cart}) {
 
-  const itemsCount = `${cart.length} ${plural(cart.length, {
+  const itemsCount = cart.reduce((count, item) => count += item.count, 0)
+
+  const itemsCountString = `${itemsCount} ${plural(itemsCount, {
     one: 'товар',
     few: 'товара',
     many: 'товаров'
   })}`;
 
-  const priceSum = cart.reduce((sum, item) => sum += item.price, 0);
+  const priceSum = cart.reduce((sum, item) => sum += item.price * item.count, 0);
 
   return (
     <div className='Controls'>
@@ -19,7 +21,7 @@ function Controls({openCart, cart}) {
         В корзине: {
           cart.length 
             ? <span>
-                {`${itemsCount} / ${priceSum} ₽`}
+                {`${itemsCountString} / ${priceSum} ₽`}
               </span> 
             : <span>пусто</span>
         }
@@ -31,7 +33,12 @@ function Controls({openCart, cart}) {
 
 Controls.propTypes = {
   openCart: PropTypes.func,
-  cart: PropTypes.array
+  cart: PropTypes.arrayOf(PropTypes.shape({
+    code: PropTypes.number,
+    title: PropTypes.string,
+    selected: PropTypes.bool,
+    count: PropTypes.number,
+  })).isRequired,
 };
 
 Controls.defaultProps = {
